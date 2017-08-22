@@ -6,22 +6,22 @@ jobs:
     steps:
       - checkout
       - run:
-        name: update-npm
-        command: 'sudo npm install -g npm@latest'
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
       - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-        name: 'install dependencies'
-        command: npm install
+          name: 'install dependencies'
+          command: npm install
       - save_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
-        paths:
-          - ./node_modules
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
       - run:
-        name: lint
-        command: npm run lint
+          name: lint
+          command: npm run lint
       - run:
-        name: test
-        command: npm run test
+          name: test
+          command: npm run test
       - store_test_results:
-        path: test-results.xml
+          path: test-results.xml
