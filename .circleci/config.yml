@@ -1,14 +1,8 @@
 version: 2
-dependencies:
-  pre:
-    - sudo apt-get install libxss1 libappindicator1 libindicator7
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - sudo dpkg -i ./google-chrome*.deb
-    - sudo apt-get install -f
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10.0
+      - image: circleci/node:7.10.0-browsers
     steps:
       - checkout
       - restore_cache:
